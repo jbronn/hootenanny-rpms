@@ -1,0 +1,28 @@
+---
+git:
+  depth: 5
+language: cpp
+sudo: required
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: lint
+      script:
+        - |
+          docker run \
+            -v $TRAVIS_BUILD_DIR:/rpmbuild/hootenanny-rpms:rw \
+            -w /rpmbuild/hootenanny-rpms \
+            -it --rm \
+            hootenanny/rpmbuild-check@sha256:79d86c2a4a56df2752dfb78696974e17c149454fc15dc684b877ddab099962f3 \
+            ./tests/lint-yaml.sh
+    - script:
+        - |
+          docker run \
+            -v $TRAVIS_BUILD_DIR:/rpmbuild/hootenanny-rpms:rw \
+            -w /rpmbuild/hootenanny-rpms \
+            -it --rm \
+            hootenanny/rpmbuild-check@sha256:79d86c2a4a56df2752dfb78696974e17c149454fc15dc684b877ddab099962f3 \
+            ./tests/lint-bash.sh
