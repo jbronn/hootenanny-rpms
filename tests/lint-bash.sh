@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-if ! which shellcheck >> /dev/null; then
+if [ ! -x /usr/bin/shellcheck ]; then
     echo "Linting bash scripts requires shellcheck."
     exit 1
 fi

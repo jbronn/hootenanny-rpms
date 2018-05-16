@@ -1,6 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
+if [ ! -x /usr/bin/yamllint ]; then
+    echo "Linting YAML files requires yamllint."
+    exit 1
+fi
+
 # Check our config.yaml.
 yamllint config.yml
 
