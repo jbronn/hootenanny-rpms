@@ -7,12 +7,6 @@ sudo: required
 services:
   - docker
 
-before_install:
-  - ./scripts/vagrant-install.sh
-  - |
-    mkdir -p -m 0755 $HOME/.m2
-    curl -sSL https://s3.amazonaws.com/hoot-maven/m2-cache.tar.gz | tar -C $HOME/.m2 -xzf -
-
 jobs:
   include:
     - stage: lint
@@ -26,7 +20,9 @@ jobs:
             ./tests/lint-yaml.sh
     - script:
         - |
-          vagrant validate Vagrantfile
+          ./scripts/vagrant-install.sh
+          apt-get -y install rpm-build
+          MAVEN_CACHE=0 vagrant validate
     - script:
         - |
           docker run \

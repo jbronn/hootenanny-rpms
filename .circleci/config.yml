@@ -22,6 +22,14 @@ jobs:
       - run:
           name: 'Lint YAML Files'
           command: ./tests/lint-yaml.sh
+  test-vagrant:
+    machine: true
+    steps:
+      - checkout
+      - run: |
+          apt-get -y install rpm
+          ./scripts/vagrant-install.sh
+          MAVEN_CACHE=0 vagrant validate
 
 workflows:
   version: 2
@@ -29,3 +37,4 @@ workflows:
     jobs:
       - lint-bash
       - lint-yaml
+      - test-vagrant
