@@ -6,6 +6,9 @@ if [ ! -x /usr/bin/shellcheck ]; then
     exit 1
 fi
 
+# Check Vagrant installation script.
+shellcheck --exclude SC2016 scripts/vagrant-install.sh
+
 # The shellcheck doesn't like non-shell shebangs, so exclude the first
 # line when running these scripts through shell check.
 DUMB_INIT_FILES=(
