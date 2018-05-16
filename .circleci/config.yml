@@ -27,10 +27,9 @@ jobs:
       enabled: true
     steps:
       - checkout
-      - run: |
-          sudo apt-get -y install rpm
-          ./scripts/vagrant-install.sh
-          MAVEN_CACHE=0 vagrant validate
+      - run: sudo apt-get -y install rpm
+      - run: ./scripts/vagrant-install.sh
+      - run: MAVEN_CACHE=0 vagrant validate
 
 workflows:
   version: 2
