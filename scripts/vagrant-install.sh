@@ -16,7 +16,7 @@ if grep -q rhel < /etc/os-release; then
         exit 0
     fi
     DOWNLOAD_COMMAND='curl -sSL -O'
-    INSTALL_COMMAND='yum install -y'
+    INSTALL_COMMAND='sudo yum install -y'
     PACKAGE_SUFFIX=x86_64.rpm
 else
     # Debian-based.
@@ -25,7 +25,7 @@ else
         exit 0
     fi
     DOWNLOAD_COMMAND='wget -nv -L'
-    INSTALL_COMMAND='dpkg -i'
+    INSTALL_COMMAND='sudo dpkg -i'
     PACKAGE_SUFFIX=x86_64.deb
 fi
 
@@ -89,7 +89,7 @@ gpg --verify "$SIGNATURE"
 sha256sum -c <(grep -e "[[:space:]]\\+$PACKAGE\\>" "$CHECKSUMS")
 
 # Finally install Vagrant.
-sudo "$INSTALL_COMMAND" "$PACKAGE"
+$INSTALL_COMMAND "$PACKAGE"
 
 # Clean up.
 rm -f "$PACKAGE" "$CHECKSUMS" "$SIGNATURE"
