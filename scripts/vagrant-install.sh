@@ -78,7 +78,7 @@ fi
 # Download Vagrant files.
 for vagrant_file in $PACKAGE $CHECKSUMS $SIGNATURE
 do
-    "$DOWNLOAD_COMMAND" "$VAGRANT_BASEURL/$vagrant_file"
+    $DOWNLOAD_COMMAND "$VAGRANT_BASEURL/$vagrant_file"
 done
 
 # GPG verify the SHA256SUMS file.
