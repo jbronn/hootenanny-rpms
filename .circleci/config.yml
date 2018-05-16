@@ -10,8 +10,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: 'Lint YAML Files'
-          command: ./tests/lint-yaml.sh
+          name: 'Lint Bash Scripts'
+          command: ./tests/lint-bash.sh
   lint-yaml:
     working_directory: '/rpmbuild/hootenanny-rpms'
     docker:
@@ -20,8 +20,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: 'Lint Bash Scripts'
-          command: ./tests/lint-bash.sh
+          name: 'Lint YAML Files'
+          command: ./tests/lint-yaml.sh
 
 workflows:
   version: 2
