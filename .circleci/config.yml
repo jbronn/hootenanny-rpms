@@ -23,7 +23,8 @@ jobs:
           name: 'Lint YAML Files'
           command: ./tests/lint-yaml.sh
   test-vagrant:
-    machine: true
+    machine:
+      enabled: true
     steps:
       - checkout
       - run: |
