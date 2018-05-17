@@ -24,8 +24,8 @@ jobs:
     - stage: rpm
       script:
         - |
-          sudo apt-get -y update
-          sudo apt-get -y install rpm
+          sudo apt-get update -qq
+          sudo apt-get install -qq -y rpm
           ./scripts/vagrant-install.sh
           MAVEN_CACHE=0 vagrant validate
           make rpmbuild-hoot-release
