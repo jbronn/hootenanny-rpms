@@ -20,8 +20,8 @@ jobs:
             ./tests/lint-yaml.sh
     - script:
         - |
-          apt-get -y update
-          apt-get -y install rpm-build
+          sudo apt-get -y update
+          sudo apt-get -y install rpm-build
           ./scripts/vagrant-install.sh
           MAVEN_CACHE=0 vagrant validate
     - script:
