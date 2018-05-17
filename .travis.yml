@@ -33,4 +33,4 @@ jobs:
           sudo apt-get -y install rpm
           ./scripts/vagrant-install.sh
           MAVEN_CACHE=0 vagrant validate
-          make rpmbuild-generic
+          make rpmbuild-hoot-release

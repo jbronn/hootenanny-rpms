@@ -44,7 +44,7 @@ jobs:
       - run:
           name: 'Create rpmbuild-generic'
           command: |
-            make rpmbuild-generic
+            make rpmbuild-hoot-release
 
 workflows:
   version: 2
