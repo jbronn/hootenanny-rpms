@@ -31,4 +31,4 @@ jobs:
           make rpmbuild-hoot-release
           make archive
           make --version
-          make -n rpm
+          make -d -n rpm
