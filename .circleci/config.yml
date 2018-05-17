@@ -44,8 +44,7 @@ jobs:
       - run:
           name: 'make rpm'
           command: |
-            make --version
-            make -d -n rpm
+            make rpm
 
 workflows:
   version: 2
