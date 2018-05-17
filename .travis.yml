@@ -7,6 +7,9 @@ sudo: required
 services:
   - docker
 
+before_install:
+  - sed -i "s/rpmbuild_uid\: 1000/rpmbuild_uid\: $(id -u)/" config.yml
+
 jobs:
   include:
     - stage: lint

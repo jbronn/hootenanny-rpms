@@ -37,7 +37,7 @@ jobs:
       - run:
           name: 'make archive'
           command: |
-            make rpm
+            make archive
       - run:
           name: 'make rpm'
           command: |
