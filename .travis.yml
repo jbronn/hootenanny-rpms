@@ -30,4 +30,5 @@ jobs:
           MAVEN_CACHE=0 vagrant validate
           make rpmbuild-hoot-release
           make archive
-          make rpm
+          make --version
+          make -n rpm

@@ -23,6 +23,9 @@ jobs:
             sudo apt-get -y update
             sudo apt-get -y install rpm
       - run:
+          name: 'Set rpmbuild_uid for CircleCI'
+          command: 'sed -i "s/rpmbuild_uid\: 1000/rpmbuild_uid\: $(id -u)/" config.yml'
+      - run:
           name: 'Install Vagrant'
           command: |
             ./scripts/vagrant-install.sh
@@ -41,7 +44,8 @@ jobs:
       - run:
           name: 'make rpm'
           command: |
-            make rpm
+            make --version
+            make -n rpm
 
 workflows:
   version: 2
