@@ -18,7 +18,7 @@ jobs:
             -it --rm \
             hootenanny/rpmbuild-check@sha256:79d86c2a4a56df2752dfb78696974e17c149454fc15dc684b877ddab099962f3 \
             bash -c "./tests/lint-yaml.sh && ./tests/lint-bash.sh"
-    - stage: rpmbuild-hoot-release
+    - stage: rpm
       script:
         - |
           sudo apt-get -y update
@@ -26,3 +26,4 @@ jobs:
           ./scripts/vagrant-install.sh
           MAVEN_CACHE=0 vagrant validate
           make rpmbuild-hoot-release
+          make rpm

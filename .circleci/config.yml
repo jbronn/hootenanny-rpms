@@ -12,7 +12,7 @@ jobs:
       - run:
           name: 'Lint YAML and Scripts'
           command: ./tests/lint-yaml.sh && ./tests/lint-bash.sh
-  rpmbuild-hoot-release:
+  rpm:
     machine:
       enabled: true
     steps:
@@ -34,6 +34,10 @@ jobs:
           name: 'make rpmbuild-hoot-release'
           command: |
             make rpmbuild-hoot-release
+      - run:
+          name: 'make rpm'
+          command: |
+            make rpm
 
 workflows:
   version: 2
