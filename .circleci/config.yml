@@ -44,6 +44,6 @@ workflows:
   tests:
     jobs:
       - lint
-      - rpmbuild-hoot-release:
+      - rpm:
           requires:
             - lint
