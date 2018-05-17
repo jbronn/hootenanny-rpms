@@ -26,4 +26,5 @@ jobs:
           ./scripts/vagrant-install.sh
           MAVEN_CACHE=0 vagrant validate
           make rpmbuild-hoot-release
+          make archive
           make rpm
