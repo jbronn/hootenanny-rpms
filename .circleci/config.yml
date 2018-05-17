@@ -28,11 +28,23 @@ jobs:
     steps:
       - checkout
       - run:
+          name: 'Install RPM Tools'
           command: |
-            sudo apt-get -y update && sudo apt-get -y install rpm
+            sudo apt-get -y update
+            sudo apt-get -y install rpm
+      - run:
+          name: 'Install Vagrant'
+          command: |
             ./scripts/vagrant-install.sh
+
+      - run:
+          name: 'Validate Vagrantfile'
+          command: |
             MAVEN_CACHE=0 vagrant validate
-            which make
+      - run:
+          name: 'Create rpmbuild-generic'
+          command: |
+            make rpmbuild-generic
 
 workflows:
   version: 2

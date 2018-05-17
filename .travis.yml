@@ -29,7 +29,8 @@ jobs:
     - stage: test
       script:
         - |
-          sudo apt-get -y update && sudo apt-get -y install rpm
+          sudo apt-get -y update
+          sudo apt-get -y install rpm
           ./scripts/vagrant-install.sh
           MAVEN_CACHE=0 vagrant validate
-          which make
+          make rpmbuild-generic
