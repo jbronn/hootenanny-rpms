@@ -6,6 +6,25 @@ if [ ! -x /usr/bin/shellcheck ]; then
     exit 1
 fi
 
+# The chosen scripts.
+shellcheck \
+    scripts/hoot-repo.sh
+
+# Scripts with quoting errors.
+shellcheck \
+    --exclude SC2086 \
+    scripts/hoot-checkout.sh \
+    scripts/nodejs-install.sh \
+    scripts/nodesource-repo.sh \
+    scripts/pgdg-repo.sh \
+    scripts/postgresql-install.sh \
+    scripts/repo-sign.sh \
+    shell/BuildArchive.sh \
+    shell/BuildDeps.sh \
+    shell/BuildHootImages.sh \
+    shell/BuildHoot.sh \
+    shell/BuildRunImages.sh
+
 # Check Vagrant installation script.
 shellcheck --exclude SC2016 scripts/vagrant-install.sh
 
