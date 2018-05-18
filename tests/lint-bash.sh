@@ -8,7 +8,8 @@ fi
 
 # The chosen scripts.
 shellcheck \
-    scripts/hoot-repo.sh
+    scripts/hoot-repo.sh \
+    scripts/vagrant-install.sh
 
 # Scripts with quoting errors.
 shellcheck \
@@ -24,9 +25,6 @@ shellcheck \
     shell/BuildHootImages.sh \
     shell/BuildHoot.sh \
     shell/BuildRunImages.sh
-
-# Check Vagrant installation script.
-shellcheck --exclude SC2016 scripts/vagrant-install.sh
 
 # The shellcheck doesn't like non-shell shebangs, so exclude the first
 # line when running these scripts through shell check.

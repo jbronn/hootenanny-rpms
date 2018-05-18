@@ -20,7 +20,7 @@ if grep -q rhel < /etc/os-release; then
     PACKAGE_SUFFIX=x86_64.rpm
 else
     # Debian-based.
-    if [ "$(dpkg-query --showformat='${Version}' --show vagrant)" == "1:$VAGRANT_VERSION" ]; then
+    if [ "$(dpkg-query --showformat=\"\$\{Version\}\" --show vagrant)" == "1:$VAGRANT_VERSION" ]; then
         echo "Vagrant $VAGRANT_VERSION is already installed."
         exit 0
     fi
@@ -38,7 +38,9 @@ SIGNATURE="vagrant_${VAGRANT_VERSION}_SHA256SUMS.sig"
 pushd /var/tmp
 
 # Import Hashicorp key.
-if ! gpg --list-keys --with-colon | grep -q 51852D87348FFC4C; then
+if ! gpg --list-public-keys --with-colons | \
+        awk -F: '{ print $5 }' | \
+        grep -q '^51852D87348FFC4C\>'; then
     cat > hashicorp.key <<EOF
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: GnuPG v1
@@ -81,7 +83,7 @@ do
     $DOWNLOAD_COMMAND "$VAGRANT_BASEURL/$vagrant_file"
 done
 
-# GPG verify the SHA256SUMS file.
+# GPG verify the signature for the SHA256SUMS file.
 gpg --verify "$SIGNATURE"
 
 # Verify checksums, but grep out all other lines in the checksum
