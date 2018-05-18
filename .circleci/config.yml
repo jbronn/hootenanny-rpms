@@ -37,14 +37,6 @@ jobs:
           name: 'make rpmbuild-hoot-release'
           command: |
             make rpmbuild-hoot-release
-      - run:
-          name: 'make archive'
-          command: |
-            make archive
-      - run:
-          name: 'make rpm'
-          command: |
-            make rpm
 
 workflows:
   version: 2

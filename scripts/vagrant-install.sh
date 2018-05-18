@@ -3,10 +3,8 @@ set -euo pipefail
 
 # Allow override of `VAGRANT_VERSION` and `VAGRANT_BASEURL` variables from
 # the environment.
-set +u
 VAGRANT_VERSION="${VAGRANT_VERSION:-2.1.1}"
 VAGRANT_BASEURL="${VAGRANT_BASEURL:-https://releases.hashicorp.com/vagrant/$VAGRANT_VERSION}"
-set -u
 
 # Set up command differences between RHEL and Debian-based systems.
 if grep -q rhel < /etc/os-release; then
@@ -83,7 +81,7 @@ do
     $DOWNLOAD_COMMAND "$VAGRANT_BASEURL/$vagrant_file"
 done
 
-# GPG verify the signature for the SHA256SUMS file.
+# Verify the signature for the checksums file.
 gpg --verify "$SIGNATURE"
 
 # Verify checksums, but grep out all other lines in the checksum
